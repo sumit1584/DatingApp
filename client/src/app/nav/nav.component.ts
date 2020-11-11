@@ -22,8 +22,6 @@ constructor(public accountservice:AccountService,private router:Router,
   login(){
     this.accountservice.login(this.model).subscribe(resp => {
       this.router.navigateByUrl('/members');  
-    },err => {
-      this.toastr.error(err.error)
     });
   }
 

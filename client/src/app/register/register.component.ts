@@ -10,6 +10,7 @@ import { AccountService } from '../_services/account.service';
 export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
 model:any = {};
+validationErrors:string[] = [];
   constructor(private accountService:AccountService,private toastr:ToastrService) { }
 
   ngOnInit(): void {
@@ -20,7 +21,8 @@ model:any = {};
       console.log(resp);
       this.cancel()
     },err => {
-      this.toastr.error(err.error)
+      this.validationErrors = err;
+      //this.toastr.error(err.error);
     })
   }
 
