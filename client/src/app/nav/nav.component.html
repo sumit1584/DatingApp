@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Dating App</a>               
+          <ul *ngIf="accountservice.currentUser$ | async"  class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Matches</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Lists</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Messages</a>
+            </li>           
+          </ul>
+          <div *ngIf="accountservice.currentUser$ | async" class="btn-group" dropdown>
+            <a id="button-basic" dropdownToggle
+            class="dropdown-toggle text-light">Welcome User</a>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" href="#">Edit Profile</a></li>            
+              <li class="divider dropdown-divider"></li>
+              <li role="menuitem"><a class="dropdown-item" href="#" (click)="logout()">Logout</a>
+              </li>
+            </ul>
+          </div>
+          <form *ngIf="(accountservice.currentUser$ | async) === null" #loginform="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()"
+          autocomplete="off">
+            <input class="form-control mr-sm-2"
+             type="text" placeholder="Username" name="username" [(ngModel)]="model.username">
+            <input name="password" [(ngModel)]="model.password" class="form-control mr-sm-2" 
+            type="password" placeholder="Password">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+          </form>
+    </div>  
+  </nav>
